@@ -45,5 +45,3 @@ app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// Vercel serverless function export
-module.exports = app;
