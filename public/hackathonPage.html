@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hackathon Triumph</title>
+    <!-- Google Fonts: Retain Poppins/Roboto, add Playfair Display for header logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;900&family=Roboto:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <!-- GSAP and Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --dark: #0F172A; /* Deep dark blue from experience pages */
+            --dark-blue: #2A3E5A; /* Darker blue accent */
+            --light: #F5F5F5; /* Light text/background */
+            --light-blue: #8EB1E6; /* Soft blue accent */
+            --aesthetic-red: #FF4D4D; /* Vibrant red accent */
+            --glow-blue: #4A6FA5; /* Subtle blue glow */
+            --lightning-base: #A3C4F3; /* Light blue for effects */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, var(--dark), var(--dark-blue));
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--light-blue) 30%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(142, 177, 230, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--light-blue);
+            text-shadow: 0 0 10px var(--light-blue);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            margin-left: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-shadow: 0 0 4px rgba(245, 245, 245, 0.2);
+        }
+
+        .nav-links a:hover {
+            color: var(--aesthetic-red);
+            text-shadow: 0 0 8px var(--aesthetic-red);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes lightning {
+            0% { box-shadow: 0 0 10px rgba(142, 177, 230, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(142, 177, 230, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(142, 177, 230, 0.2); }
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+            100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .triumph-section {
+            padding: 160px 70px 120px;
+            position: relative;
+            text-align: center;
+        }
+
+        .triumph-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(142, 177, 230, 0.4), rgba(255, 77, 77, 0.3));
+            z-index: -1;
+            animation: shimmer 10s infinite alternate;
+        }
+
+        .triumph-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4.5em;
+            font-weight: 900;
+            color: var(--light-blue);
+            text-shadow: 0 0 25px var(--glow-blue);
+            margin-bottom: 70px;
+            letter-spacing: 3px;
+        }
+
+        .triumph-entry {
+            margin: 70px auto;
+            max-width: 1100px;
+            position: relative;
+        }
+
+        .entry-content {
+            padding: 20px 0;
+        }
+
+        .entry-date {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: var(--aesthetic-red);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--aesthetic-red);
+        }
+
+        .text-anim {
+            font-size: 1.4em;
+            line-height: 1.9;
+            color: var(--light);
+            margin: 20px 0;
+        }
+
+        .inline-image {
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px var(--glow-blue);
+            margin: 30px auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .inline-image:hover {
+            transform: scale(1.1);
+        }
+
+        .project-modules {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(142, 177, 230, 0.2);
+        }
+
+        .module {
+            background: linear-gradient(135deg, rgba(142, 177, 230, 0.2), rgba(255, 77, 77, 0.1));
+            padding: 25px;
+            border-radius: 12px;
+            width: 280px;
+            border: 2px solid var(--dark-blue);
+            transition: transform 0.4s;
+        }
+
+        .module:hover {
+            transform: translateY(-10px);
+        }
+
+        .module h4 {
+            margin: 0 0 15px;
+            color: var(--light-blue);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        .quote-anim {
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            font-size: 1.6em;
+            color: var(--light);
+            text-align: center;
+            margin: 50px 0;
+            padding: 25px 35px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .quote-anim::before {
+            content: '“';
+            font-size: 2.5em;
+            color: var(--aesthetic-red);
+            position: absolute;
+            left: 15px;
+            top: -15px;
+        }
+
+        .quote-anim::after {
+            content: '”';
+            font-size: 2.5em;
+            color: var(--aesthetic-red);
+            position: absolute;
+            right: 15px;
+            bottom: -15px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .gallery img {
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px var(--dark-blue);
+            transition: transform 0.5s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.15);
+        }
+
+        .certificate {
+            cursor: pointer;
+            width: 320px;
+            margin: 50px auto;
+            display: block;
+        }
+
+        .certificate img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 25px var(--aesthetic-red);
+            transition: transform 0.5s;
+        }
+
+        .certificate img:hover {
+            transform: scale(1.1);
+        }
+
+        .mysterious-box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(142, 177, 230, 0.5);
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .mysterious-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            background: radial-gradient(circle, rgba(255, 77, 77, 0.3), transparent 70%);
+            opacity: 0.6;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .mysterious-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="2" fill="rgba(245, 245, 245, 0.8)" /></svg>') repeat;
+            opacity: 0.3;
+            animation: shimmer-particles 6s linear infinite;
+        }
+
+        .mysterious-box .box-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--glow-blue);
+            opacity: 0.8;
+            animation: fade-in 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(142, 177, 230, 0.5), 0 0 40px rgba(255, 77, 77, 0.3);
+                opacity: 0.6;
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(142, 177, 230, 0.8), 0 0 60px rgba(255, 77, 77, 0.5);
+                opacity: 0.9;
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(142, 177, 230, 0.5), 0 0 40px rgba(255, 77, 77, 0.3);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes shimmer-particles {
+            0% { background-position: 0 0; opacity: 0.3; }
+            50% { opacity: 0.5; }
+            100% { background-position: 100px 100px; opacity: 0.3; }
+        }
+
+        .certificate-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 900px;
+            box-shadow: 0 0 35px var(--glow-blue);
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 15px;
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .modal-content button {
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: var(--aesthetic-red);
+            color: var(--light);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .modal-content button:hover {
+            background: var(--dark-blue);
+            transform: scale(1.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--light);
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: auto;
+            opacity: 0.5;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 5px rgba(142, 177, 230, 0.3));
+        }
+
+        .social-links a {
+            color: var(--light-blue);
+            margin: 0 25px;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--aesthetic-red);
+            transform: translateY(-5px);
+        }
+
+        .footer-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            margin-top: 1rem;
+            text-shadow: 0 0 5px rgba(245, 245, 245, 0.3);
+        }
+
+        .skills-showcase {
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            border-left: 5px solid var(--light-blue);
+            border-right: 5px solid var(--aesthetic-red);
+        }
+
+        .skills-showcase h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            color: var(--light-blue);
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px var(--glow-blue);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: var(--dark-blue);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.15);
+            background: var(--aesthetic-red);
+        }
+
+        .impact-statement {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--light-blue);
+            text-align: center;
+            margin: 60px 0;
+            padding: 25px 35px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .triumph-section {
+                padding: 100px 5% 80px;
+            }
+
+            .triumph-title {
+                font-size: 2.8em;
+            }
+
+            .entry-date {
+                font-size: 1.8em;
+            }
+
+            .text-anim {
+                font-size: 1.2em;
+            }
+
+            .inline-image {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .project-modules {
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .module {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .quote-anim {
+                font-size: 1.4em;
+                padding: 20px 25px;
+            }
+
+            .gallery {
+                gap: 20px;
+            }
+
+            .gallery img {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .certificate {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .mysterious-box {
+                width: 250px;
+                height: 250px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                max-width: 95%;
+            }
+
+            .modal-content iframe {
+                height: 300px;
+            }
+
+            .modal-content button {
+                font-size: 1em;
+                padding: 10px 25px;
+            }
+
+            footer {
+                padding: 30px;
+            }
+
+            .footer-text {
+                font-size: 0.9em;
+            }
+
+            .social-links a {
+                font-size: 1em;
+                margin: 0 15px;
+            }
+
+            .skills-showcase {
+                padding: 20px;
+            }
+
+            .skills-showcase h3 {
+                font-size: 1.6em;
+            }
+
+            .skill-item {
+                font-size: 0.9em;
+                padding: 10px 20px;
+            }
+
+            .impact-statement {
+                font-size: 1.5em;
+                padding: 20px 25px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links {
+                margin-top: 0.5rem;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .triumph-section {
+                padding: 80px 5% 60px;
+            }
+
+            .triumph-title {
+                font-size: 2.2em;
+            }
+
+            .entry-date {
+                font-size: 1.5em;
+            }
+
+            .text-anim {
+                font-size: 1em;
+            }
+
+            .inline-image {
+                max-width: 200px;
+            }
+
+            .quote-anim {
+                font-size: 1.2em;
+                padding: 15px 20px;
+            }
+
+            .gallery {
+                gap: 20px;
+            }
+
+            .gallery img {
+                max-width: 200px;
+            }
+
+            .certificate {
+                max-width: 240px;
+            }
+
+            .mysterious-box {
+                width: 200px;
+                height: 200px;
+            }
+
+            .modal-content {
+                padding: 15px;
+            }
+
+            .modal-content iframe {
+                height: 200px;
+            }
+
+            .modal-content button {
+                font-size: 0.9em;
+                padding: 8px 20px;
+            }
+
+            .skills-showcase h3 {
+                font-size: 1.4em;
+            }
+
+            .skill-item {
+                font-size: 0.8em;
+                padding: 8px 15px;
+            }
+
+            .impact-statement {
+                font-size: 1.3em;
+                padding: 15px 20px;
+            }
+
+            .nav-links a {
+                margin: 0.3rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .triumph-section {
+                padding: 120px 5% 100px;
+            }
+
+            .triumph-title {
+                font-size: 3.5em;
+            }
+
+            .entry-date {
+                font-size: 2em;
+            }
+
+            .text-anim {
+                font-size: 1.3em;
+            }
+
+            .inline-image {
+                max-width: 280px;
+            }
+
+            .module {
+                width: 260px;
+            }
+
+            .gallery {
+                gap: 20px;
+            }
+
+            .gallery img {
+                max-width: 280px;
+            }
+
+            .certificate {
+                max-width: 300px;
+            }
+
+            .mysterious-box {
+                width: 280px;
+                height: 280px;
+            }
+
+            .modal-content iframe {
+                height: 400px;
+            }
+
+            .nav-links a {
+                margin-left: 1rem;
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="customCursor" class="custom-cursor"></div>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Purva Chalindrawar</a>
+            <nav class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="triumph" class="triumph-section">
+            <div class="triumph-bg"></div>
+            <h1 class="triumph-title heading-anim">My Hackathon Journey</h1>
+            <div class="impact-statement">
+                From bold ideas to a shining victory, this is my journey of innovation and teamwork.
+            </div>
+            <div class="triumph-entries">
+                <div class="triumph-entry">
+                    <div class="entry-content">
+                        <h2 class="entry-date">Day 0: The Big Start</h2>
+                        <p class="text-anim">My team and I jumped into a 32-hour hackathon at a college we’d never seen before. We had no plan, just a spark of excitement and a love for challenges. Ready for a wild ride, we dove in with full energy, eager to create something amazing.</p>
+                        <p class="text-anim">With no idea what lay ahead, we laughed and dreamed big. This was our chance to shine, and we were all in for the adventure!</p>
+                        <div class="quote-anim">“No plan, just passion—let’s make it happen!” —Our Team</div>
+                    </div>
+                </div>
+                <div class="triumph-entry">
+                    <div class="entry-content">
+                        <h2 class="entry-date">Day 1: Finding Our Groove</h2>
+                        <p class="text-anim">The campus felt like a new world. Other teams seemed so prepared, while we were just figuring things out. We shared jokes, sipped awful coffee, and started talking with others. Those chats sparked ideas and helped us feel at home.</p>
+                        <img src="assets/hackathonfirst.jpg" alt="Campus Energy" class="inline-image">
+                        <p class="text-anim">By the end of the day, we weren’t just a team—we were a crew ready to build something awesome together.</p>
+                        <div class="quote-anim">“Lost at first, but now we’re unstoppable!”</div>
+                    </div>
+                </div>
+                <div class="triumph-entry">
+                    <div class="entry-content">
+                        <h2 class="entry-date">Day 2: The Power Push</h2>
+                        <p class="text-anim">We worked non-stop for 32 hours, powered by coffee and team spirit. Our project was a phishing detection system using advanced machine learning. I led the creation of a dataset with 18,204 phishing links, ensuring fast and accurate detection.</p>
+                        <img src="assets/hackathon6.jpg" alt="Team Work" class="inline-image">
+                        <p class="text-anim">Our machine learning model spotted dangerous patterns with precision. The virtual machine analysis hit 93% accuracy, and our user interface team crafted a clean, easy-to-use design. We fixed bugs together, laughed through the chaos, and built something truly impressive.</p>
+                        <div class="project-modules">
+                            <h3>Project Components</h3>
+                            <div class="module">
+                                <h4>Database System</h4>
+                                <p>Developed a dataset of 18,204 phishing links for rapid and reliable detection.</p>
+                            </div>
+                            <div class="module">
+                                <h4>Machine Learning Model</h4>
+                                <p>Trained to identify malicious domain and URL patterns with high accuracy.</p>
+                            </div>
+                            <div class="module">
+                                <h4>Virtual Machine Analysis</h4>
+                                <p>Achieved 93% accuracy in detecting phishing behavior through virtualization.</p>
+                            </div>
+                            <div class="module">
+                                <h4>User Interface</h4>
+                                <p>Designed a sleek, intuitive interface for user input and result display.</p>
+                            </div>
+                        </div>
+                        <div class="skills-showcase">
+                            <h3>Skills Demonstrated</h3>
+                            <div class="skills-list">
+                                <span class="skill-item">Database Development</span>
+                                <span class="skill-item">Machine Learning</span>
+                                <span class="skill-item">Team Collaboration</span>
+                                <span class="skill-item">UI/UX Design</span>
+                                <span class="skill-item">Problem Solving</span>
+                                <span class="skill-item">Time Management</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="triumph-entry">
+                    <div class="entry-content">
+                        <h2 class="entry-date">The Grand Victory</h2>
+                        <p class="text-anim">We never expected to win, but we did! From a team with no clue to champions holding the trophy, it felt like a movie. Our presentation was full of heart, showing off our 93% accuracy and strong teamwork. The judges loved our energy and innovation.</p>
+                        <img src="assets/victory.jpg" alt="Victory Moment" class="inline-image">
+                        <p class="text-anim">We celebrated with shouts, dances, and happy tears. This win proved we could turn chaos into success, and I’m proud to share this journey.</p>
+                        <div id="project-gallery" class="gallery">
+                            <img src="assets/victory2.jpg" alt="Victory Moment 2">
+                            <img src="assets/hackathon4.jpg" alt="Hackathon 4">
+                            <img src="assets/hackathon3.jpg" alt="Hackathon 3">
+                        </div>
+                        <div class="certificate mysterious-box" onclick="zoomCertificate('assets/speckathon.pdf')">
+                            <div class="box-content">Unlock the Mystery!</div>
+                        </div>
+                        <div class="quote-anim">“From chaos to champions—what an epic ride!” —Me</div>
+                    </div>
+                </div>
+                <div class="impact-statement">
+                    I’m excited to bring my skills and passion to your team. Let’s create more victories together!
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/purva-chalindrawar-a26338222" target="_blank">LinkedIn</a>
+                <a href="https://github.com/purvachalindrawar" target="_blank">GitHub</a>
+            </div>
+            <p class="footer-text">© 2025 Purva Chalindrawar. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function animateText(container) {
+            const headingAnimations = {
+                triumph: {
+                    from: { opacity: 0, y: 200, scale: 0.7, rotationX: 90 },
+                    to: { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 2, ease: 'elastic.out(1, 0.3)', stagger: 0.07 },
+                    preprocess: heading => {
+                        heading.innerHTML = heading.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
+                    }
+                }
+            };
+
+            container.querySelectorAll('.heading-anim').forEach(heading => {
+                const sectionId = heading.closest('.triumph-section')?.getAttribute('id');
+                const { from, to, preprocess } = headingAnimations[sectionId] || {};
+                if (preprocess) preprocess(heading);
+                gsap.fromTo(preprocess ? heading.querySelectorAll('span') : heading, from, {
+                    ...to,
+                    onComplete: () => gsap.to(heading, { 
+                        textShadow: '0 0 15px var(--glow-blue)', 
+                        duration: 2.5, 
+                        repeat: -1, 
+                        yoyo: true, 
+                        ease: 'sine.inOut' 
+                    })
+                });
+            });
+
+            gsap.fromTo(container.querySelectorAll('.text-anim'), 
+                { opacity: 0, x: -150, rotation: -10 }, 
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    rotation: 0, 
+                    duration: 1.5, 
+                    ease: 'power4.out', 
+                    stagger: 0.5,
+                    scrollTrigger: {
+                        trigger: '.text-anim',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.impact-statement', 
+                { opacity: 0, y: 100, scale: 0.8 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    duration: 1.5, 
+                    ease: 'back.out(2)', 
+                    scrollTrigger: {
+                        trigger: '.impact-statement',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        }
+
+        function animateTriumph() {
+            gsap.fromTo('.entry-content', 
+                { opacity: 0, y: 200, scale: 0.85 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    duration: 1.8, 
+                    ease: 'back.out(2.5)', 
+                    stagger: 0.6,
+                    scrollTrigger: {
+                        trigger: '.entry-content',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.inline-image', 
+                { opacity: 0, rotation: -20, scale: 0.7 }, 
+                { 
+                    opacity: 1, 
+                    rotation: 0, 
+                    scale: 1, 
+                    duration: 2, 
+                    ease: 'elastic.out(1, 0.3)', 
+                    stagger: 0.7,
+                    scrollTrigger: {
+                        trigger: '.inline-image',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.quote-anim', 
+                { opacity: 0, scaleX: 0.2, x: 100 }, 
+                { 
+                    opacity: 1, 
+                    scaleX: 1, 
+                    x: 0, 
+                    duration: 2.5, 
+                    ease: 'sine.inOut', 
+                    stagger: 0.6,
+                    scrollTrigger: {
+                        trigger: '.quote-anim',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.module', 
+                { opacity: 0, y: 100, rotation: 5 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    rotation: 0, 
+                    duration: 1.5, 
+                    ease: 'elastic.out(1, 0.4)', 
+                    stagger: 0.3,
+                    scrollTrigger: {
+                        trigger: '.project-modules',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.skill-item', 
+                { opacity: 0, y: 60, scale: 0.7 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    duration: 1.2, 
+                    ease: 'elastic.out(1, 0.5)', 
+                    stagger: 0.3,
+                    scrollTrigger: {
+                        trigger: '.skills-list',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+
+            gsap.fromTo('.gallery img', 
+                { opacity: 0, scale: 0.6, rotation: 15 }, 
+                { 
+                    opacity: 1, 
+                    scale: 1, 
+                    rotation: 0, 
+                    duration: 2, 
+                    ease: 'elastic.out(1, 0.3)', 
+                    stagger: 0.4,
+                    scrollTrigger: {
+                        trigger: '.gallery',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        }
+
+        function zoomCertificate(fileUrl) {
+            const modal = document.createElement('div');
+            modal.classList.add('certificate-modal');
+            // Check if the file is a PDF
+            if (fileUrl.toLowerCase().endsWith('.pdf')) {
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <iframe src="${fileUrl}" title="Victory Certificate"></iframe>
+                        <button onclick="closeModal()">Close</button>
+                    </div>
+                `;
+            } else {
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <img src="${fileUrl}" alt="Victory Certificate">
+                        <button onclick="closeModal()">Close</button>
+                    </div>
+                `;
+            }
+            document.body.appendChild(modal);
+            gsap.fromTo(modal, 
+                { opacity: 0, scale: 0.1, rotation: 20 }, 
+                { opacity: 1, scale: 1, rotation: 0, duration: 1.2, ease: 'back.out(3)' }
+            );
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.certificate-modal');
+            if (modal) {
+                gsap.to(modal, { 
+                    opacity: 0, 
+                    scale: 0.1, 
+                    rotation: -20, 
+                    duration: 0.6, 
+                    ease: 'power3.in', 
+                    onComplete: () => modal.remove() 
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateText(document.querySelector('.triumph-section'));
+            animateTriumph();
+
+            const cursor = document.getElementById('customCursor');
+            document.addEventListener('mousemove', e => {
+                gsap.to(cursor, {
+                    x: e.clientX,
+                    y: e.clientY,
+                    duration: 0.1,
+                    ease: 'power4.out'
+                });
+            });
+
+            document.addEventListener('mousedown', () => {
+                gsap.to(cursor, {
+                    scale: 2,
+                    background: 'radial-gradient(circle, var(--aesthetic-red) 25%, transparent 75%)',
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+
+            document.addEventListener('mouseup', () => {
+                gsap.to(cursor, {
+                    scale: 1,
+                    background: 'radial-gradient(circle, var(--light-blue) 25%, transparent 75%)',
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', e => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        gsap.to(window, {
+                            scrollTo: { y: target.offsetTop, offsetY: 100 },
+                            duration: 1.5,
+                            ease: 'power4.out'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

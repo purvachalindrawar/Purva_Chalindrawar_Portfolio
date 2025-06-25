@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me: Discover My Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #0F172A;
+      --dark-blue: #2A3E5A;
+      --light: #F5F5F5;
+      --light-blue: #8EB1E6;
+      --aesthetic-red: #FF4D4D;
+      --glow-blue: #4A6FA5;
+      --lightning-base: #A3C4F3; /* Lighter shade of --light-blue for base border */
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--dark), var(--dark-blue));
+      font-family: 'Poppins', sans-serif;
+      color: var(--light);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+
+    /* Main Content Styles */
+    .journey-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, rgba(142, 177, 230, 0.1), transparent 70%);
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      100% { opacity: 0.8; }
+    }
+
+    .cosmic-dust {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--light-blue);
+      border-radius: 50%;
+      opacity: 0.6;
+      box-shadow: 0 0 12px var(--light-blue);
+      animation: twinkle 5s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+      100% { opacity: 0.6; transform: scale(1); }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://img.icons8.com/ios-filled/50/ffffff/butterfly.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: rgba(142, 177, 230, 0.3); /* Fallback color */
+      animation: float 6s infinite ease-in-out, twinkle 2s infinite;
+      box-shadow: 0 0 15px var(--light-blue);
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .butterfly.left-side {
+      left: -20px;
+      top: 10%;
+    }
+
+    .butterfly.right-side {
+      right: -20px;
+      top: 20%;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: var(--light-blue);
+      text-align: center;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 20px var(--light-blue);
+      opacity: 0;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+      position: relative;
+      width: 45%;
+      padding: 1.5rem;
+      background: rgba(42, 62, 90, 0.5);
+      border-radius: 12px;
+      border: 2px solid var(--lightning-base);
+      box-shadow: 0 0 10px rgba(142, 177, 230, 0.2);
+      animation: lightning 2s infinite ease-in-out;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    @keyframes lightning {
+      0% { box-shadow: 0 0 10px rgba(142, 177, 230, 0.2); }
+      50% { box-shadow: 0 0 20px rgba(142, 177, 230, 0.5); }
+      100% { box-shadow: 0 0 10px rgba(142, 177, 230, 0.2); }
+    }
+
+    .section.left {
+      margin-left: 50px;
+      margin-right: auto;
+      transform: rotate(-2deg);
+    }
+
+    .section.right {
+      margin-left: auto;
+      margin-right: 50px;
+      transform: rotate(2deg);
+    }
+
+    .section.center {
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+      transform: rotate(0deg);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--aesthetic-red);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px var(--aesthetic-red);
+      border-left: 4px solid var(--light-blue);
+      padding-left: 0.5rem;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1rem;
+      text-shadow: 0 0 4px rgba(245, 245, 245, 0.3);
+    }
+
+    .highlight {
+      color: var(--light-blue);
+      font-weight: 600;
+    }
+
+    .journey-image {
+      width: 100%;
+      max-width: 600px;
+      height: 500px;
+      border-radius: 10px;
+      border: 2px solid var(--light-blue);
+      box-shadow: 0 0 20px rgba(142, 177, 230, 0.3);
+      margin: 2rem auto;
+      display: block;
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .journey-image:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 30px rgba(142, 177, 230, 0.6);
+    }
+
+    .image-caption {
+      font-size: 0.9rem;
+      color: var(--light);
+      text-align: center;
+      margin-top: 0.5rem;
+      text-shadow: 0 0 4px rgba(245, 245, 245, 0.3);
+      opacity: 0;
+    }
+
+    /* Slider Styles for Hackathon Section */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 2px solid var(--light-blue);
+      box-shadow: 0 0 20px rgba(142, 177, 230, 0.3);
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      opacity: 0;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .slider-nav button {
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--light-blue);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+      z-index: 10;
+    }
+
+    .slider-nav button:hover {
+      background: var(--aesthetic-red);
+      color: var(--light);
+    }
+
+    /* Footer Styles */
+    footer {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 -4px 20px rgba(142, 177, 230, 0.2);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .social-icons a {
+      color: var(--light);
+      font-size: 1.5rem;
+      margin: 0 1rem;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 5px rgba(245, 245, 245, 0.3);
+    }
+
+    .social-icons a:hover {
+      color: var(--aesthetic-red);
+      text-shadow: 0 0 10px var(--aesthetic-red);
+    }
+
+    .footer-text {
+      color: var(--light);
+      font-size: 1rem;
+      margin-top: 1rem;
+      text-shadow: 0 0 5px rgba(245, 245, 245, 0.3);
+    }
+
+    .attribution {
+      font-size: 0.8rem;
+      color: var(--light);
+      opacity: 0.7;
+      margin-top: 0.5rem;
+    }
+
+    .btn-journey {
+      background: linear-gradient(45deg, var(--dark-blue), var(--mid-blue));
+      color: var(--light);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.4s;
+      display: inline-block;
+      text-decoration: none;
+      text-shadow: 0 0 4px var(--light-blue);
+      cursor: pointer;
+    }
+    
+    .btn-journey:hover {
+      background: linear-gradient(45deg, var(--light-blue), var(--aesthetic-red));
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--light-blue);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1023px) {
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .section {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        transform: rotate(0deg);
+      }
+
+      .section.center {
+        width: 90%;
+      }
+
+      .butterfly.left-side {
+        left: -30px;
+      }
+
+      .butterfly.right-side {
+        right: -30px;
+      }
+
+      .social-icons a {
+        font-size: 1.3rem;
+        margin: 0 0.8rem;
+      }
+
+      .journey-image, .slider-container {
+        max-width: 100%;
+      }
+
+      .container {
+        margin: 3rem auto;
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .section {
+        width: 85%;
+        padding: 0.8rem;
+        margin-bottom: 3rem;
+      }
+
+      .section.center {
+        width: 85%;
+      }
+
+      .butterfly {
+        width: 25px;
+        height: 25px;
+      }
+
+      .butterfly.left-side {
+        left: -25px;
+        top: 15%;
+      }
+
+      .butterfly.right-side {
+        right: -25px;
+        top: 15%;
+      }
+
+      .social-icons a {
+        font-size: 1.2rem;
+        margin: 0 0.6rem;
+      }
+
+      .footer-text, .attribution {
+        font-size: 0.9rem;
+      }
+
+      .container {
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+
+      .journey-image, .slider-container {
+        max-width: 90%;
+        margin: 1.5rem auto;
+      }
+
+      .image-caption {
+        font-size: 0.8rem;
+      }
+
+      .slide {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        padding-left: 0.4rem;
+        border-left-width: 3px;
+      }
+
+      p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .section {
+        width: 90%;
+        padding: 0.6rem;
+        margin-bottom: 2rem;
+      }
+
+      .section.center {
+        width: 90%;
+      }
+      .section.left {
+        margin-left: 10px;
+      }
+  
+      .section.right {
+        margin-right: 10px;
+      }
+
+      .butterfly {
+        width: 20px;
+        height: 20px;
+      }
+
+      .butterfly.left-side {
+        left: -20px;
+        top: 10%;
+      }
+
+      .butterfly.right-side {
+        right: -20px;
+        top: 10%;
+      }
+      .social-icons a {
+        font-size: 1rem;
+        margin: 0 0.5rem;
+      }
+
+      .footer-text, .attribution {
+        font-size: 0.8rem;
+      }
+
+      .container {
+        margin: 1.5rem auto;
+        padding: 0.8rem;
+      }
+
+      .journey-image, .slider-container {
+        max-width: 100%;
+        margin: 1rem auto;
+      }
+
+      .image-caption {
+        font-size: 0.7rem;
+      }
+
+      .cosmic-dust {
+        width: 3px;
+        height: 3px;
+      }
+
+      .slide {
+        height: 150px;
+      }
+    }
+  </style>
+  <style>
+    :root {
+      --dark: #0F172A;
+      --dark-blue: #2A3E5A;
+      --light: #F5F5F5;
+      --light-blue: #8EB1E6;
+      --aesthetic-red: #722b2b;
+      --glow-blue: #4A6FA5;
+      --cursor: #8EB1E6;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--light-blue) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Header Styles */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(142, 177, 230, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--light-blue);
+      text-shadow: 0 0 10px var(--light-blue);
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      font-size: 1.1rem;
+      margin-left: 2rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 5px rgba(245, 245, 245, 0.3);
+    }
+
+    .nav-links a:hover {
+      color: var(--aesthetic-red);
+      text-shadow: 0 0 10px var(--aesthetic-red);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1023px) {
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 1rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+      }
+
+      .nav-links {
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        margin: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0.5rem;
+      }
+
+      .nav-links a {
+        margin: 0.3rem 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="customCursor" class="custom-cursor"></div>
+  <header>
+    <div class="nav-container">
+      <div class="logo"><a href="index.html">Purva Chalindrawar</a></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="hackathonPage.html">Hackathon</a>
+      </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Custom cursor animation
+      const cursor = document.getElementById('customCursor');
+      document.addEventListener('mousemove', e => {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.1,
+          ease: 'power2.out'
+        });
+      });
+
+      document.addEventListener('mousedown', () => {
+        gsap.to(cursor, {
+          scale: 1.5,
+          duration: 0.3,
+          ease: 'elastic.out(1, 0.3)'
+        });
+      });
+
+      document.addEventListener('mouseup', () => {
+        gsap.to(cursor, {
+          scale: 1,
+          duration: 0.3,
+          ease: 'elastic.out(1, 0.3)'
+        });
+      });
+
+      // Header animation
+      gsap.fromTo('.nav-container', 
+        { opacity: 0, y: -20 }, 
+        { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.2 }
+      );
+
+      gsap.fromTo('.nav-links a', 
+        { opacity: 0, x: 20 }, 
+        { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out', stagger: 0.1, delay: 0.4 }
+      );
+
+      gsap.fromTo('.logo', 
+        { opacity: 0, scale: 0.8 }, 
+        { opacity: 1, scale: 1, duration: 1, ease: 'elastic.out(1, 0.5)', delay: 0.6 }
+      );
+    });
+  </script>
+  </header>
+
+  <!-- Main Content -->
+  <div class="journey-bg">
+    <!-- Background cosmic dust -->
+    <div class="cosmic-dust" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+    <div class="cosmic-dust" style="top: 30%; left: 60%; animation-delay: 1s;"></div>
+    <div class="cosmic-dust" style="top: 50%; left: 10%; animation-delay: 2s;"></div>
+    <div class="cosmic-dust" style="top: 70%; left: 80%; animation-delay: 3s;"></div>
+    <div class="cosmic-dust" style="top: 90%; left: 40%; animation-delay: 4s;"></div>
+  </div>
+  <div class="container">
+    <h1 style="margin-bottom: 35px; font-size:3rem;" >My Bold Journey ✨</h1>
+
+    <!-- Intro Paragraph -->
+    <div class="section center">
+      <p>
+        I’m <span class="highlight">Purva Chalindrawar</span>, a full-stack developer with a passion for creating impactful digital solutions. My journey spans both tech and non-tech fields, blending technical expertise with real-world problem-solving. Let’s explore the milestones that shaped my career!
+      </p>
+      <div class="butterfly left-side"></div>
+      <div class="butterfly right-side"></div>
+    </div>
+
+    <div class="section left">
+      <div class="section-title">🔄 A Leap of Faith</div>
+      <p>
+        I started in Mechanical Engineering, designing machines, but my passion lay elsewhere. In <span class="highlight">2022</span>, I transitioned to Computer Science—a bold move that meant starting anew. Leaving behind years of study was daunting, but my drive to innovate in the tech world fueled my journey.
+      </p>
+      <div class="butterfly left-side"></div>
+    </div>
+
+    <div class="section right">
+      <div class="section-title">💡 Facing Barriers & Rising Strong</div>
+      <p>
+        The shift to tech wasn’t seamless. I grappled with self-doubt and complex concepts like algorithms, often feeling behind my peers. Through late-night coding sessions, study groups, and countless tutorials, I persevered. Each small victory—like solving my first coding challenge—boosted my confidence, teaching me resilience and the power of persistence.
+      </p>
+      <div class="butterfly right-side"></div>
+    </div>
+
+    <div class="section left" style="width: 900px; max-width: 90%; margin-left: 20px; margin-right: auto; padding: 1.5rem; transform: rotate(-2deg);">
+      <div class="section-title">🚀 My First Tech Spark</div>
+      <p>
+        Months into my tech journey, I joined a hackathon—and my team won! Our app addressed a real-world issue, and the victory affirmed my place in tech. It wasn’t just a trophy; it was a spark that ignited my passion for building innovative solutions in the tech field.
+      </p>
+      <div class="butterfly left-side"></div>
+      <div class="slider-container">
+        <div class="slider">
+          <img src="assets/hackathon1.jpeg" alt="Hackathon Team" class="slide">
+          <img src="assets/hackathon2.jpeg" alt="Hackathon Presentation" class="slide">
+          
+        </div>
+        <div class="slider-nav">
+          <button class="prev">←</button>
+          <button class="next">→</button>
+        </div>
+      </div>
+      <p class="image-caption">Celebrating my first hackathon win with my team! 🏆</p>
+      <a href="hackathonPage.html" target="_blank" class="btn-journey">Read More</a>
+    </div>
+
+    <div class="section right">
+      <div class="section-title">💼 Non-Tech Internship Adventures</div>
+      <p>
+        An unexpected opportunity arose—an internship at a non-tech firm. They needed tech solutions, and I stepped up, automating their processes with custom tools. Bridging the gap between tech and non-tech teams was challenging, but I simplified communication and focused on their needs, building a system that saved hours weekly. This experience honed my adaptability and cross-domain collaboration skills.
+      </p>
+      <div class="butterfly right-side"></div>
+    </div>
+
+    <div class="section left">
+      <div class="section-title">🛠️ My Professional Tech Work</div>
+      <p>
+        As a Full Stack Developer Intern at <span class="highlight">Indian Cyber Security Solutions</span>, I worked on developing and deploying multiple dynamic web applications using the <span class="highlight">MERN stack</span>. I focused on improving system performance, building clean and animated user interfaces, and designing scalable REST APIs. Collaborating in Agile sprints and using Git for version control, I also enhanced team communication through clear documentation and regular sync-ups. This experience significantly strengthened my skills in backend development, frontend design, and professional teamwork.
+      </p>
+      <div class="butterfly left-side"></div>
+    </div>
+
+    <div class="section right">
+      <div class="section-title">🌟 My Skills</div>
+      <p>
+        <p>
+          I’m a <span class="highlight">full-stack developer</span> with hands-on experience in 
+          <span class="highlight">JavaScript</span>, <span class="highlight">React</span>, 
+          <span class="highlight">Node.js</span>, <span class="highlight">Express</span>, 
+          <span class="highlight">MongoDB</span>, <span class="highlight">Python</span>, and 
+          <span class="highlight">AWS</span>. My skillset also includes building 
+          <span class="highlight">RESTful APIs</span>, designing 
+          <span class="highlight">microservices architectures</span>, working with 
+          <span class="highlight">Docker containers</span>, and managing 
+          <span class="highlight">Linux-based systems</span>. With a solid foundation in 
+          <span class="highlight">computer networking</span> and 
+          <span class="highlight">database management</span>, I bring a strong backend and infrastructure focus. 
+          I’m currently expanding my expertise in <span class="highlight">cybersecurity</span> concepts such as 
+          <span class="highlight">ethical hacking</span>, while continuously strengthening my 
+          <span class="highlight">problem-solving</span> and 
+          <span class="highlight">collaboration abilities</span> through 
+          <span class="highlight">projects</span>, <span class="highlight">internships</span>, and 
+          <span class="highlight">hackathons</span>.
+        </p>
+        
+      </p>
+      <div class="butterfly right-side"></div>
+    </div>
+
+    <div class="section left">
+      <div class="section-title">🏅 Achievements That Shine</div>
+      <p>
+        My journey is marked by milestones I’m proud of. I’m an <span class="highlight">AWS-certified Database Specialist</span> and a <span class="highlight">Beta Microsoft Learn Student Ambassador</span>. I’ve won hackathons, delivered impactful projects, and earned recognition for my contributions, reflecting my growth in the tech field.
+      </p>
+      <div class="butterfly left-side"></div>
+    </div>
+
+    <div class="section right">
+      <div class="section-title">🔍 What’s Next?</div>
+      <p>
+        I’m now diving deeper into <span class="highlight">AI, cybersecurity, and system design</span>, creating projects that merge tech with real-world impact—like AI models for data analysis and secure business systems. My goal is to continue growing, innovating, and making a difference in the tech field, one line of code at a time.
+      </p>
+      <div class="butterfly right-side"></div>
+    </div>
+    <div class="section center">
+      <p class="highlight">
+        This is just the beginning—I’m shaping my future in tech, and I’m excited for what’s next! 💖
+      </p>
+      <div class="butterfly left-side"></div>
+      <div class="butterfly right-side"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/purva-chalindrawar-a26338222" target="_blank">LinkedIn</a>
+        <a href="https://github.com/purvachalindrawar" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-text">© 2025 Purva Chalindrawar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            gsap.fromTo(
+              'h1',
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1.2, ease: 'elastic.out(1, 0.5)' }
+            );
+            gsap.fromTo(
+              '.section',
+              { opacity: 0, y: 50, rotate: 0 },
+              { opacity: 1, y: 0, rotate: 0, duration: 1, ease: 'power2.out', stagger: 0.3, delay: 0.5 }
+            );
+            gsap.fromTo(
+              '.butterfly',
+              { opacity: 0, scale: 0 },
+              { opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)', stagger: 0.3, delay: 0.8 }
+            );
+            gsap.fromTo(
+              'p',
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 1, ease: 'power2.out', stagger: 0.2, delay: 1 }
+            );
+            gsap.fromTo(
+              '.journey-image',
+              { opacity: 0, scale: 0.9 },
+              { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out', stagger: 0.3, delay: 1.2 }
+            );
+            gsap.fromTo(
+              '.image-caption',
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, duration: 1, ease: 'power2.out', stagger: 0.3, delay: 1.4 }
+            );
+            gsap.fromTo(
+              '.slide',
+              { opacity: 0, x: 100 },
+              { opacity: 1, x: 0, duration: 1.2, ease: 'power2.out', stagger: 0.2, delay: 1.2 }
+            );
+          }
+        });
+      }, observerOptions);
+
+      observer.observe(document.querySelector('.container'));
+
+      // Slider functionality
+      const slider = document.querySelector('.slider');
+      const slides = document.querySelectorAll('.slide');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      let currentIndex = 0;
+
+      function updateSlider() {
+        gsap.to(slider, {
+          x: -currentIndex * 100 + '%',
+          duration: 0.5,
+          ease: 'power2.inOut',
+          onStart: () => {
+            gsap.to(slides[currentIndex], { opacity: 1, duration: 0.3 });
+            slides.forEach((slide, index) => {
+              if (index !== currentIndex) {
+                gsap.to(slide, { opacity: 0.5, duration: 0.1 });
+              }
+            });
+          }
+        });
+      }
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+      });
+
+      // Auto-slide every 5 seconds
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      }, 5000);
+
+      // Initial slide setup
+      updateSlider();
+    });
+  </script>
+</body>
+</html>

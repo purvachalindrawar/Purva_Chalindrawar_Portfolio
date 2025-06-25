@@ -1,0 +1,1306 @@
+:root {
+  --black: #1C2526;
+  --dark-blue: #2A3E5A;
+  --mid-blue: #4A6FA5;
+  --light-blue: #8EB1E6;
+  --aesthetic-red: #FF6F61;
+  --light: #E6E6E6;
+  --accent: #1A535C;
+  --cursor: #FF9F43;
+  --lightning-purple: #DDA0DD; /* For thunder effect */
+  --lightning-blue: #00BFFF; /* For thunder effect */
+  --lightning-white: #E6F0FA; /* Bright white for flash effect */
+}
+
+body {
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
+  color: var(--light);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aurora, .bubble, .nebula-particle, .wave-pattern,
+.cosmic-ripple, .nebula-glow, .shooting-star,
+.butterfly, .flutter-wing, .cosmic-dust {
+  position: absolute;
+  opacity: 0;
+}
+
+.aurora {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--black), var(--light-blue), var(--dark-blue));
+  opacity: 0.25;
+  mix-blend-mode: screen;
+}
+
+.bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light-blue), var(--dark-blue));
+  box-shadow: 0 0 15px var(--light-blue);
+}
+
+.butterfly {
+  width: 40px;
+  height: 30px;
+  background: linear-gradient(45deg, var(--aesthetic-red), var(--light-blue));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  box-shadow: 0 0 10px var(--aesthetic-red);
+}
+
+.nebula-particle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light-blue), var(--dark-blue));
+  box-shadow: 0 0 20px var(--light-blue);
+}
+
+.flutter-wing {
+  width: 25px;
+  height: 15px;
+  background: linear-gradient(45deg, var(--aesthetic-red), var(--mid-blue));
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  box-shadow: 0 0 8px var(--aesthetic-red);
+}
+
+.wave-pattern {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--black), rgba(142, 177, 230, 0.2));
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+.cosmic-ripple {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--light-blue);
+  background: radial-gradient(circle, rgba(142, 177, 230, 0.2), transparent);
+  box-shadow: 0 0 10px var(--light-blue);
+}
+
+.nebula-glow {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light-blue), var(--mid-blue));
+  box-shadow: 0 0 15px var(--aesthetic-red), 0 0 25px var(--light-blue);
+}
+
+.shooting-star {
+  width: 5px;
+  height: 5px;
+  background: var(--light-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--light-blue);
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(to left, var(--light-blue), transparent);
+  transform: rotate(-45deg);
+  left: -40px;
+  top: 2px;
+  opacity: 0.6;
+}
+
+.cosmic-dust {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light-blue), var(--dark-blue));
+  box-shadow: 0 0 20px var(--light-blue);
+}
+
+/* Enhanced Navbar with 3D Styling and Animations */
+.navbar {
+  background: rgba(42, 62, 90, 0.3);
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 20px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  transform: perspective(1000px) rotateX(5deg);
+  transition: transform 0.3s ease;
+}
+
+.navbar:hover {
+  transform: perspective(1000px) rotateX(0deg);
+}
+
+.navbar-brand {
+  color: var(--light) !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-left: 10px !important;
+  position: relative;
+  transition: all 0.3s ease;
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.navbar-brand:hover {
+  color: var(--light-blue) !important;
+  text-shadow: 0 0 12px var(--light-blue);
+  background: rgba(142, 177, 230, 0.1);
+  transform: perspective(500px) rotateY(10deg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+  color: var(--light) !important;
+  font-weight: 500;
+  padding: 10px 15px;
+  text-shadow: 0 0 4px var(--light-blue);
+  border-radius: 8px;
+  margin: 0 5px;
+  position: relative;
+  transition: all 0.3s ease;
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.nav-link:hover {
+  color: var(--light-blue) !important;
+  text-shadow: 0 0 12px var(--light-blue);
+  background: rgba(142, 177, 230, 0.1);
+  transform: perspective(500px) rotateY(10deg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link.active {
+  color: var(--light-blue) !important;
+  text-shadow: 0 0 8px var(--light-blue);
+  background: rgba(142, 177, 230, 0.2);
+  font-weight: bold;
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile Placeholder (Home Section - Circular) */
+.profile-placeholder, .edu-placeholder {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--light-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--light-blue);
+  transition: all 0.5s;
+  background: var(--black);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--light-blue);
+  text-shadow: 0 0 8px var(--light-blue);
+  cursor: pointer;
+}
+
+.profile-placeholder:hover, .edu-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--light-blue), 0 0 35px var(--aesthetic-red);
+}
+
+/* About Me Profile (Square with Lightning/Thunder Effect) */
+.about-profile {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px; /* Square with rounded corners */
+  background: var(--black);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--light-blue);
+  text-shadow: 0 0 8px var(--light-blue);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s;
+}
+
+/* Lightning/Thunder Border Effect */
+.about-profile::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--lightning-purple),
+    var(--lightning-blue),
+    var(--lightning-purple),
+    var(--lightning-blue)
+  );
+  background-size: 400%;
+  z-index: -1;
+  border-radius: 15px;
+  animation: lightningGlow 3s linear infinite;
+}
+
+/* Inner border to create a layered effect */
+.about-profile::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: var(--black);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.about-profile {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--lightning-blue), 0 0 35px var(--lightning-purple);
+}
+
+/* Animation for Lightning/Thunder Effect */
+@keyframes lightningGlow {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(100%);
+  }
+  50% {
+    background-position: 400% 50%;
+    filter: brightness(150%);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(100%);
+  }
+}
+/* Sliding Lighter Animation (Spark Effect) */
+.about-profile::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--lightning-white);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--lightning-white), 0 0 25px var(--lightning-blue);
+  animation: slideLighter 4s linear infinite;
+}
+
+/* Animation for Lightning Flash Effect (Border Color) */
+@keyframes lightningFlash {
+  0% {
+    border-color: var(--lightning-blue);
+  }
+  50% {
+    border-color: var(--lightning-white);
+  }
+  100% {
+    border-color: var(--lightning-purple);
+  }
+}
+
+/* Animation for Sliding Lighter (Spark Moving Around Border) */
+@keyframes slideLighter {
+  0% {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  75% {
+    top: 100%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+/* Ensure navbar toggler is styled */
+.navbar-toggler {
+  border: none;
+  padding: 10px;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.section {
+  padding: 80px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 100px;
+}
+.section h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, var(--light-blue), var(--aesthetic-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(42, 62, 90, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, var(--light-blue), var(--aesthetic-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Home Section */
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-placeholder, .edu-placeholder {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--light-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--light-blue);
+  transition: all 0.5s;
+  background: var(--black);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--light-blue);
+  text-shadow: 0 0 8px var(--light-blue);
+  cursor: pointer;
+}
+
+.profile-placeholder:hover, .edu-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--light-blue), 0 0 35px var(--aesthetic-red);
+}
+
+.home-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.home-content h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.home-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* About Me Section */
+.about-content.split-screen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.about-text {
+  flex: 1;
+  text-align: left;
+}
+
+.about-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Skills Section */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.skill-item {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+/* Experience Section */
+.exp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.exp-item, .exp-details {
+  position: relative;
+}
+
+.exp-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.exp-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
+
+.exp-desc {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.exp-details {
+  display: none;
+}
+
+.exp-details.active {
+  display: block;
+}
+
+/* Projects Section */
+.project-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.project-item, .project-details {
+  position: relative;
+}
+
+.project-details {
+  display: none;
+}
+
+.project-details.active {
+  display: block;
+}
+
+.project-detail-content {
+  background: rgba(42, 62, 90, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.project-highlight {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: rgba(142, 177, 230, 0.2);
+  border-radius: 5px;
+  border: 1px solid var(--light-blue);
+}
+
+/* Education Section */
+
+.edu-journey-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+  overflow: hidden; /* Ensures train doesn't overflow during animation */
+}
+
+/* Train Track (Connecting Line) */
+.train-track {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--light-blue), var(--mid-blue));
+  z-index: -1;
+  border-radius: 3px;
+  box-shadow: 0 0 10px var(--light-blue);
+}
+
+/* Train Container (Holds All Cars Together) */
+.train-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Train Car (Each Education Item) */
+.edu-train-car {
+  position: relative;
+  width: 300px; /* Fixed width for each car */
+  margin: 0; /* Remove default margin */
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(42, 62, 90, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edu-train-car:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Train Car Top (Roof-like Design) */
+.train-car-top {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 15px;
+  background: var(--dark-blue);
+  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--light-blue);
+  border-bottom: none;
+}
+
+/* Train Coupling (Connector Between Cars) */
+.train-coupling {
+  width: 50px;
+  height: 10px;
+  background: var(--mid-blue);
+  border: 1px solid var(--light-blue);
+  box-shadow: 0 0 5px var(--light-blue);
+  z-index: 2;
+}
+
+/* Train Wheels */
+.train-wheels {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.wheel {
+  width: 30px;
+  height: 30px;
+  background: var(--mid-blue);
+  border-radius: 50%;
+  border: 2px solid var(--light-blue);
+  box-shadow: 0 0 5px var(--light-blue);
+}
+
+/* Education Content Inside Train Car */
+.edu-content {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Increased height to accommodate all content */
+  overflow: hidden; /* Hide overflowing content during slide */
+}
+
+/* Brief and Details Content */
+.edu-brief, .edu-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem; /* Increased padding for better spacing */
+  display: none; /* Hidden by default */
+  z-index: 1; /* Ensure content is above background */
+}
+
+.edu-brief.active, .edu-details.active {
+  display: block; /* Show when active */
+}
+
+/* Aesthetic Styling for Details */
+.edu-details {
+background: linear-gradient(145deg, rgba(74, 111, 165, 0.3), rgba(42, 62, 90, 0.5)); /* Subtle gradient */
+border: 1px solid var(--light-blue);
+border-radius: 8px;
+box-shadow: inset 0 0 15px rgba(142, 177, 230, 0.4), 0 0 20px rgba(142, 177, 230, 0.2); /* Enhanced glow */
+color: var(--light);
+text-align: center;
+position: relative;
+overflow: hidden; /* Ensure decorative elements don't overflow */
+}
+
+/* Decorative Top Glow */
+.edu-details::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, transparent, var(--light-blue), transparent);
+box-shadow: 0 0 10px var(--light-blue);
+}
+
+/* Subtle Sparkle Effect */
+.edu-details::after {
+content: '';
+position: absolute;
+top: 10%;
+left: 10%;
+width: 6px;
+height: 6px;
+background: var(--light-blue);
+border-radius: 50%;
+box-shadow: 0 0 8px var(--light-blue), 0 0 16px var(--light-blue);
+animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+0% { opacity: 0.5; transform: scale(1); }
+100% { opacity: 1; transform: scale(1.5); }
+}
+
+.edu-details h3 {
+font-size: 1.4rem; /* Slightly larger for emphasis */
+margin-bottom: 0.8rem;
+text-shadow: 0 0 12px var(--light-blue), 0 0 20px var(--light-blue); /* Stronger glow */
+letter-spacing: 1px; /* Subtle spacing for elegance */
+}
+
+.edu-details p {
+font-size: 1rem;
+margin: 0.6rem 0;
+line-height: 1.5; /* Better readability */
+text-shadow: 0 0 6px rgba(142, 177, 230, 0.6); /* Subtle glow on text */
+}
+
+.edu-details .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: var(--light-blue);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edu-details .close-btn:hover {
+  color: var(--aesthetic-red);
+}
+
+/* Education Placeholder */
+.edu-placeholder {
+  margin: 0 auto 1rem;
+}
+
+/* Ensure Brief Content is Visible */
+.edu-brief h3 {
+  font-size: 1.3rem; /* Slightly larger for better readability */
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px var(--light-blue);
+}
+
+.edu-brief p {
+  font-size: 1rem; /* Larger font for better visibility */
+  margin: 0.5rem 0;
+  line-height: 1.4; /* Better line spacing */
+}
+
+/* Responsive Adjustments for Mobile and Tablet (below 1024px) */
+@media (max-width: 1023px) {
+  .edu-journey-container {
+    max-width: 100%;
+    padding: 10px 0;
+  }
+
+  /* Train Track (Vertical for Mobile/Tablet) */
+  .train-track {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+    height: auto;
+    background: linear-gradient(180deg, var(--light-blue), var(--mid-blue));
+    transform: translateX(-50%);
+  }
+
+  /* Train Container (Stack Vertically) */
+  .train-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Train Car (Adjust Width and Margin) */
+  .edu-train-car {
+    width: 300%; /* Take up most of the screen width */
+    max-width: 360px; /* Cap the width for better readability */
+    margin: 10px 0; /* Add vertical spacing between cars */
+  }
+
+  /* Train Coupling (Vertical Connector) */
+  .train-coupling {
+    width: 10px;
+    height: 20px; /* Vertical connector */
+  }
+
+  /* Train Wheels (Adjust Positioning for Vertical Layout) */
+  .train-wheels {
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Education Content (Adjust Height for Smaller Screens) */
+  .edu-content {
+    height: 360px; /* Increased height for mobile to fit content */
+  }
+
+  /* Adjust Font Sizes for Better Readability */
+  .edu-brief h3, .edu-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .edu-brief p, .edu-details p {
+    font-size: 0.9rem;
+  }
+}
+
+/* (Remaining styles unchanged) */
+/* Achievements Section */
+.achieve-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.achieve-item, .achieve-details {
+  position: relative;
+}
+
+.achieve-details {
+  display: none;
+}
+
+.achieve-details.active {
+  display: block;
+}
+
+/* Contact Section */
+.contact-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-box.neumorphic-card {
+  background: var(--dark-blue);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-box.neumorphic-card:hover {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4), -3px -3px 8px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-box i {
+  font-size: 1.5rem;
+  color: var(--light-blue);
+}
+
+.contact-box p, .contact-box a {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--light);
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.contact-form h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--light);
+  font-size: 1rem;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  background: rgba(42, 62, 90, 0.3);
+  backdrop-filter: blur(15px);
+}
+
+.social-links a {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--light-blue);
+  text-shadow: 0 0 12px var(--light-blue);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  color: var(--aesthetic-red);
+  transform: rotate(90deg);
+}
+
+.btn-custom {
+  background: linear-gradient(45deg, var(--light-blue), var(--aesthetic-red));
+  color: var(--light);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.4s;
+  text-shadow: 0 0 4px var(--light-blue);
+  cursor: pointer;
+}
+
+.btn-custom:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--light-blue);
+}
+
+.btn-journey {
+  background: linear-gradient(45deg, var(--dark-blue), var(--mid-blue));
+  color: var(--light);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  text-shadow: 0 0 4px var(--light-blue);
+  cursor: pointer;
+}
+
+.btn-journey:hover {
+  background: linear-gradient(45deg, var(--light-blue), var(--aesthetic-red));
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--light-blue);
+}
+
+.text-anim, .heading-anim {
+  opacity: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(42, 62, 90, 0.9);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--light-blue);
+  display: none;
+  z-index: 2000;
+}
+
+.popup.active {
+  display: block;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, var(--cursor), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 12px var(--cursor);
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  display: block !important;
+}
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--cursor);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+}
+
+@keyframes auroraFlow {
+  0% { background-position: 0 0; opacity: 0.25; }
+  100% { background-position: 400px 400px; opacity: 0.45; }
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translate(0, 0); opacity: 1; background: var(--light-blue); }
+  50% { transform: translate(50px, -100px); opacity: 0.9; background: var(--dark-blue); }
+  100% { transform: translate(100px, -200px); opacity: 0; background: var(--light-blue); }
+}
+
+@keyframes nebulaDrift {
+  0% { transform: translate(0, 0); opacity: 0.4; }
+  50% { transform: translate(150px, 50px); opacity: 0.9; }
+  100% { transform: translate(300px, 100px); opacity: 0; }
+}
+
+@keyframes waveFlow {
+  0% { background-position: 0 0; opacity: 0.15; }
+  100% { background-position: 500px 500px; opacity: 0.35; }
+}
+
+@keyframes cosmicRippleExpand {
+  0% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px var(--light-blue); }
+  100% { transform: scale(10); opacity: 0; box-shadow: 0 0 20px var(--aesthetic-red); }
+}
+
+@keyframes nebulaGlowPulse {
+  0% { transform: scale(0.5); opacity: 0.3; box-shadow: 0 0 15px var(--light-blue); }
+  50% { transform: scale(1.5); opacity: 0.8; box-shadow: 0 0 25px var(--aesthetic-red); }
+  100% { transform: scale(0.5); opacity: 0.3; box-shadow: 0 0 15px var(--light-blue); }
+}
+
+@keyframes shootingStarTrail {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(500px, -300px); opacity: 0; }
+}
+
+@keyframes butterflyFlutter {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  50% { transform: translate(100px, -50px) rotate(15deg); opacity: 0.8; }
+  100% { transform: translate(200px, -100px) rotate(30deg); opacity: 0; }
+}
+
+@keyframes wingFlutter {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  50% { transform: translate(50px, 20px) rotate(10deg); opacity: 0.7; }
+  100% { transform: translate(100px, 40px) rotate(20deg); opacity: 0; }
+}
+
+@keyframes fadeInGlow {
+  0% { opacity: 0; text-shadow: none; }
+  100% { opacity: 1; text-shadow: 0 0 12px var(--light-blue); }
+}
+
+@keyframes letterBounce {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cinematicFadeIn {
+  0% { opacity: 0; filter: blur(10px); transform: translateY(50px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes revealWithBlur {
+  0% { opacity: 0; filter: blur(5px); transform: scale(0.95); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+
+@keyframes waveText {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes spiralIn {
+  0% { transform: rotate(0deg) scale(0); opacity: 0; }
+  100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+
+@keyframes popInSparkle {
+  0% { opacity: 0; transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeUpRipple {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoColorShift {
+  0% { color: var(--light-blue); text-shadow: 0 0 8px var(--light-blue); }
+  33% { color: var(--aesthetic-red); text-shadow: 0 0 8px var(--aesthetic-red); }
+  66% { color: var(--mid-blue); text-shadow: 0 0 8px var(--mid-blue); }
+  100% { color: var(--light-blue); text-shadow: 0 0 8px var(--light-blue); }
+}
+
+@keyframes textGlow {
+  0% { text-shadow: 0 0 4px var(--light-blue); opacity: 0.8; }
+  50% { text-shadow: 0 0 12px var(--light-blue), 0 0 20px var(--aesthetic-red); opacity: 1; }
+  100% { text-shadow: 0 0 4px var(--light-blue); opacity: 0.8; }
+}
+
+/* Responsive Design */
+@media (max-width: 1023px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}
+.section-title {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 1.7rem;
+}
+
+
+
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0;
+    min-height: auto;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .home-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .home-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-content.split-screen {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .skills-grid {
+    gap: 1rem;
+  }
+
+  .skill-item {
+    width: 100px;
+    height: 100px;
+    font-size: 0.8rem;
+  }
+
+  .contact-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .home-content h1 {
+    font-size: 2rem;
+  }
+
+  .home-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .skill-item {
+    width: 80px;
+    height: 80px;
+    font-size: 0.7rem;
+  }
+
+  .btn-custom, .btn-journey {
+    padding: 8px 16px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.success-message.active {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.1); /* Example animation effect */
+}
