@@ -1030,18 +1030,18 @@ text-shadow: 0 0 6px rgba(142, 177, 230, 0.6); /* Subtle glow on text */
   z-index: 2;
 }
 
-.popup {
+#popup {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(42, 62, 90, 0.9);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px var(--light-blue);
-  display: none;
-  z-index: 2000;
+  z-index: 9999;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }
+
 
 .popup.active {
   display: block;
