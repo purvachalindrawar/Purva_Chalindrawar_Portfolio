@@ -590,21 +590,21 @@ async function submitMessage() {
 }
 
 function closePopup() {
-  const successElement = document.getElementById('successMessage');
-  if (successElement && successElement.classList.contains('active')) {
-    gsap.to(successElement, {
+  const popup = document.getElementById('popup');
+  if (popup) {
+    gsap.to(popup, {
       opacity: 0,
       scale: 0.8,
       duration: 0.5,
       ease: "power2.inOut",
       onComplete: () => {
-        successElement.classList.remove('active');
-        successElement.textContent = '';
-        gsap.set(successElement, { opacity: 1, scale: 1 });
+        popup.style.display = 'none';
+        gsap.set(popup, { opacity: 1, scale: 1 }); // Reset for next time
       }
     });
   }
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".section h2").forEach((heading) => {
     gsap.fromTo(heading,
