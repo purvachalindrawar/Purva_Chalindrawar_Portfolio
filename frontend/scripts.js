@@ -569,17 +569,18 @@ async function submitMessage() {
     console.log('Response data:', result); // Debug log
 
     if (response.ok) {
-      // Update interface with animated success message
-      const successElement = document.getElementById('successMessage');
-      if (successElement) {
-        successElement.textContent = result.message || 'Message Sent Successfully!';
-        successElement.classList.add('active');
-        setTimeout(() => successElement.classList.remove('active'), 3000);
-      }
-      document.getElementById('name').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('message').value = '';
-    } else {
+  // Show the animated popup
+  const popup = document.getElementById('popup');
+  if (popup) {
+    popup.style.display = 'block';
+  }
+
+  // Clear input fields
+  document.getElementById('name').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('message').value = '';
+}
+ else {
       alert('Error saving message: ' + (result.error || 'Unknown error'));
     }
   } catch (error) {
