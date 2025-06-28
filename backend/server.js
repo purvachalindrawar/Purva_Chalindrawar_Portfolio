@@ -1,28 +1,25 @@
-// server.js
-
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// PostgreSQL Connection Pool
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// PostgreSQL connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false, // Required for Neon
-  },
+  ssl: { rejectUnauthorized: false },
 });
 
-// API endpoint to receive contact form data
+// POST API
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
-
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required' });
   }
@@ -32,18 +29,19 @@ app.post('/api/contact', async (req, res) => {
       `INSERT INTO contacts (name, email, message, created_at) VALUES ($1, $2, $3, NOW()) RETURNING *`,
       [name, email, message]
     );
-    res.status(201).json({
-      message: 'Message saved successfully!',
-      data: result.rows[0],
-    });
+    res.status(201).json({ message: 'Message saved!', data: result.rows[0] });
   } catch (error) {
-    console.error('Database insert error:', error);
+    console.error('Insert error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Start the server
+// Fallback to index.html for any unknown routes (SPA support)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
