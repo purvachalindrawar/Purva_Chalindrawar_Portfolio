@@ -182,6 +182,53 @@
     <div class="container">
       <h2>Projects</h2>
       <div class="project-container">
+
+        <!-- Project: PyChatX -->
+<div class="project-item glass-card" id="pychatx-brief" data-id="pychatx">
+  <h3 class="text-anim" style="font-size: 1.7rem;">PyChatX – Real-time Team Chat</h3>
+  <p class="text-anim">FastAPI + React chat with email verification, WebSockets, reactions & invite links.</p>
+  <button class="btn btn-custom" onclick="toggleDetails('pychatx')">Details</button>
+</div>
+
+<div class="project-details glass-card" id="pychatx-details">
+  <button class="close-btn" onclick="toggleDetails('pychatx')">✖</button>
+  <div class="project-detail-content">
+    <h3>PyChatX – Real-time Team Chat</h3>
+    <p class="text-anim">
+      A full-stack chat app with secure signup/login & email verification, WebSocket messaging,
+      message reactions, read/delivered receipts, room invites (code & link), search, and a responsive dark UI.
+      Backend on Render, frontend on Vercel, PostgreSQL on Neon.
+    </p>
+
+    <div class="project-highlight">
+      <p class="text-anim">
+        <strong>Tech Stack:</strong>
+        FastAPI (Python), PostgreSQL (Neon), Psycopg, JWT, WebSockets, aiosmtplib (Gmail SMTP),<br>
+        React + Vite, Jotai (state), Framer Motion (animations), Fetch API, Vercel (FE), Render (BE)
+      </p>
+      <p class="text-anim">
+        <strong>Key Features:</strong>
+        Email verification, room invites (auto-join via link or code), real-time typing & delivery,
+        emoji reactions, message search, attachments-ready endpoints, Prometheus metrics, CORS-hardened API.
+      </p>
+      <p class="text-anim">
+        <strong>Role:</strong> Full-stack developer — designed schema, built REST & WS endpoints,
+        implemented auth & verification flow, and crafted responsive UI/UX.
+      </p>
+      <p class="text-anim">
+        <strong>Impact:</strong> Production-style messaging app used for team collaboration; resilient real-time
+        experience with clean, mobile-friendly UI.
+      </p>
+    </div>
+
+    <p class="text-anim">
+      <a href="https://pychatx.vercel.app" target="_blank" class="text-light underline">Live App</a> •
+      <a href="https://pychatx-backend.onrender.com/docs" target="_blank" class="text-light underline">Backend API Docs</a> •
+      <a href="https://github.com/purvachalindrawar/pychatx" target="_blank" class="text-light underline">Source Code</a>
+    </p>
+  </div>
+</div>
+
         <!-- Project 1 -->
 <div class="project-item glass-card" id="image-brief" data-id="image">
     <h3 class="text-anim" style="font-size: 1.7rem;">ImageSeal – Secure Image Sharing</h3>
